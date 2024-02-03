@@ -4,6 +4,7 @@
     display: flex;
     align-items: flex-end;
     overflow-x: scroll;
+    background: rgb(235, 235, 235);
 }
 .playercard{
     position: relative;
