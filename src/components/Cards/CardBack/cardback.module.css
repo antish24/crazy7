@@ -1,0 +1,13 @@
+.cont{
+    width: 85px;
+    height: 125px;
+    transform: perspective(800px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 0 1px rgb(156, 156, 156);
+}
+.img{
+    width: 100%;
+    height: 100%;
+}
