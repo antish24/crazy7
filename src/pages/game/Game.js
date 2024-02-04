@@ -67,14 +67,14 @@ const Game = () => {
   const [players,setPlayers]=useState([
     {id:1,turn:true,cards:[]},
     {id:2,turn:false,cards:[]},
-    // {id:3,turn:false,cards:[]},
-    // {id:4,turn:false,cards:[]},
-    // {id:5,turn:false,cards:[]},
-    // {id:6,turn:false,cards:[]},
+    {id:3,turn:false,cards:[]},
+    {id:4,turn:false,cards:[]},
+    {id:5,turn:false,cards:[]},
+    {id:6,turn:false,cards:[]},
   ])
   
   const start = () => {
-    for (let x = 1; x <= 2; x++) {
+    for (let x = 1; x <= 6; x++) {
       for (let y = 1; y <= 5; y++) {
         const clickedCard = pileCards.find((card) => card.id === (x - 1) * 5 + y);
         if (clickedCard) {
