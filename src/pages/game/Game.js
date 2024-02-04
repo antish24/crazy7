@@ -117,7 +117,7 @@ const Game = () => {
   }
 
   const dropCard = (playerId,cardID) => {
-    FinishTurn()
+    // FinishTurn()
     const clickedCard = players.find(l => l.id===playerId).cards.find(l=>l.id===cardID);
     if (!clickedCard) {return;}
     if (dropCards.length > 0) {
