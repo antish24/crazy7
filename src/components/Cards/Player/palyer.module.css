@@ -7,6 +7,11 @@
     justify-content: space-evenly;
     overflow-x: scroll;
 }
+.cardtypepic{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
 .drawbtn{
     width: 40px;
     height: 60px;
@@ -35,6 +40,12 @@
     z-index: 12;
     align-items: center;
     justify-content: center;
+}
+.list{
+    padding: 5px 10px;
+    background: white;
+    display: flex;
+    gap: 10px;
 }
 .playercard{
     position: relative;
