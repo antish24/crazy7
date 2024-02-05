@@ -101,7 +101,7 @@ const Game = () => {
     const updatedPileCards = [...pileCards];
     const updatedPlayers = [...players];
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       for (let j = 0; j < players.length; j++) {
         const randomIndex = Math.floor(Math.random() * updatedPileCards.length);
         const randomCard = updatedPileCards.splice(randomIndex, 1)[0];
@@ -129,6 +129,14 @@ const Game = () => {
       setDropCards([lastDropCard]);
     }
   },[pileCards,dropCards])
+  
+  useEffect(() => {
+    const emptyPlayers = players.filter((player) => player.cards.length === 0 && player.turn === false);
+    if (emptyPlayers.length === 1) {
+      alert(`Winner is Player ${emptyPlayers[0].id}`);
+      window.location.reload()
+    }
+  }, [players]);
 
   const dropCard = (playerId,cardID) => {
     const clickedCard = players.find(l => l.id===playerId).cards.find(l=>l.id===cardID);
