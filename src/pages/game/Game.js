@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Players from '../../components/Cards/Players/Players';
 import Player from '../../components/Cards/Player/Player';
 import DeckCards from '../../components/Cards/DeckCards/DeckCards';
@@ -121,6 +121,14 @@ const Game = () => {
     setCantOrder(true)
     setCardType(e)
   }
+
+  useEffect(()=>{
+    if(pileCards.length < 1){
+      const lastDropCard = dropCards.pop();
+      setPileCards([...dropCards]);
+      setDropCards([lastDropCard]);
+    }
+  },[pileCards,dropCards])
 
   const dropCard = (playerId,cardID) => {
     const clickedCard = players.find(l => l.id===playerId).cards.find(l=>l.id===cardID);
