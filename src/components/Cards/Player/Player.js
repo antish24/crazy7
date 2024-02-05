@@ -2,10 +2,10 @@ import React from 'react'
 import styles from './palyer.module.css'
 import PlayerCard from '../PlayerCard/PlayerCard'
 
-const Player = ({data,dropCard,Order,CantOrder}) => {
-  
+const Player = ({data,dropCard,Order,CantOrder,FinishTurn}) => {
   return (
     <div className={styles.cont}>
+        <button className={styles.drawbtn} onClick={()=>FinishTurn(data.id)} disabled={data.draw||!(data.turn)}>{data.draw?"Draw":"Fin"}</button>
       <div className={styles.choosetype} style={{display:CantOrder?"none":"flex"}}>
       <select onChange={(e)=>Order(e.target.value)} disabled={CantOrder}>
         <option value='heart'>Heart</option>

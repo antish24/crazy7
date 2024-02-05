@@ -5,7 +5,7 @@ const Players = (l) => {
   return (
     <div className={styles.cont}>
       <div className={styles.box}>
-        <div className={styles.pic}  style={{borderColor:l.turn?"green":"whitesmoke"}}></div>
+        <div className={styles.pic}  style={{borderColor:l.turn?"green":"whitesmoke"}}>{l.id}</div>
         <div className={styles.cards}>
           {l.cards.map ((l,index) => (
             <img

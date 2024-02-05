@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Players from '../../components/Cards/Players/Players';
 import Player from '../../components/Cards/Player/Player';
 import DeckCards from '../../components/Cards/DeckCards/DeckCards';
@@ -65,35 +65,52 @@ const Game = () => {
   ]);
 
   const [players,setPlayers]=useState([
-    {id:1,turn:true,cards:[]},
-    {id:2,turn:false,cards:[]},
-    {id:3,turn:false,cards:[]},
-    {id:4,turn:false,cards:[]},
-    {id:5,turn:false,cards:[]},
-    {id:6,turn:false,cards:[]},
+    {id:1,turn:true,draw:true,cards:[]},
+    {id:2,turn:false,draw:true,cards:[]},
+    {id:3,turn:false,draw:true,cards:[]},
+    {id:4,turn:false,draw:true,cards:[]},
+    {id:5,turn:false,draw:true,cards:[]},
+    // {id:6,turn:false,cards:[]},
   ])
   
+  const changeTurn = (playerId) => {
+    setPlayers((prevPlayers) => {
+      const updatedPlayers = [...prevPlayers];
+      const currentPlayerIndex = updatedPlayers.findIndex((player) => player.id === playerId);
+  
+      updatedPlayers[currentPlayerIndex].turn = false;
+      updatedPlayers[(currentPlayerIndex + 1) % updatedPlayers.length].turn = true;
+      updatedPlayers[(currentPlayerIndex + 1) % updatedPlayers.length].draw = true;
+  
+      return updatedPlayers;
+    });
+  };
+
+  const FinishDraw=(playerId)=>{
+    setPlayers((prevPlayers) => {
+      const updatedPlayers = [...prevPlayers];
+      const currentPlayerIndex = updatedPlayers.findIndex((player) => player.id === playerId);
+  
+      updatedPlayers[currentPlayerIndex].draw = false;
+      return updatedPlayers;
+    });
+
+  }
+
   const start = () => {
-    for (let x = 1; x <= 6; x++) {
-      for (let y = 1; y <= 5; y++) {
-        const clickedCard = pileCards.find((card) => card.id === (x - 1) * 5 + y);
-        if (clickedCard) {
-          setPlayers((prevPlayers) => {
-            const updatedPlayers = prevPlayers.map((player) => {
-              if (player.id === x) {
-                const cardExists = player.cards.some((card) => card.id === clickedCard.id);
-                if (!cardExists) {
-                  player.cards.push(clickedCard);
-                }
-              }
-              return player;
-            });
-            return updatedPlayers;
-          });
-          setPileCards((prevCards) => prevCards.filter((card) => card.id !== clickedCard.id));
-        }
+    const updatedPileCards = [...pileCards];
+    const updatedPlayers = [...players];
+
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < players.length; j++) {
+        const randomIndex = Math.floor(Math.random() * updatedPileCards.length);
+        const randomCard = updatedPileCards.splice(randomIndex, 1)[0];
+        updatedPlayers[j].cards.push(randomCard);
       }
     }
+
+    setPileCards(updatedPileCards);
+    setPlayers(updatedPlayers);
   };
 
   const [dropCards, setDropCards] = useState ([]);
@@ -105,19 +122,7 @@ const Game = () => {
     setCardType(e)
   }
 
-  const FinishTurn=()=>{
-    setPlayers((prev) => {
-      return prev.map((player) => {
-        if (player.id === 1) {
-          player.turn=false
-        }
-        return player;
-      });
-    });
-  }
-
   const dropCard = (playerId,cardID) => {
-    // FinishTurn()
     const clickedCard = players.find(l => l.id===playerId).cards.find(l=>l.id===cardID);
     if (!clickedCard) {return;}
     if (dropCards.length > 0) {
@@ -134,7 +139,7 @@ const Game = () => {
             return player;
           });
         });
-
+        changeTurn(playerId)
       }
       else if ((CardType === clickedCard.type || lastDroppedCard.value === clickedCard.value)) {
         setDropCards (prev => [...prev, clickedCard]);
@@ -148,6 +153,7 @@ const Game = () => {
             return player;
           });
         });
+        changeTurn(playerId)
       }
     } else {
       setDropCards (prev => [...prev, clickedCard]);
@@ -161,6 +167,7 @@ const Game = () => {
           return player;
         });
       });
+      changeTurn(playerId)
     }
   };
 
@@ -181,22 +188,28 @@ const Game = () => {
         return player;
       });
     });
+
+    FinishDraw(playerId)
   };
 
   return (
     <div className={styles.cont}>
       <div className={styles.players}>
-        {players.filter(l=>l.id!==1).map(l=><Players key={l.id} {...l}/>)}
+        {players
+          .filter((player) => player.turn !==true)
+          .map((player) => (
+            <Players key={player.id} {...player} />
+          ))}
       </div>
       <DeckCards
         pileCards={pileCards}
         drawCard={drawCard}
         dropCards={dropCards}
         type={CardType}
-        data={players.find(l=>l.id===1)}
+        data={players.find(l=>l.turn===true)}
       />
-      <button onClick={start}></button>
-      <Player data={players.find(l=>l.id===1)} dropCard={dropCard} CantOrder={CantOrder} Order={orderBy8}/>
+      <button onClick={start}>start</button>
+      <Player FinishTurn={changeTurn} data={players.find(l=>l.turn===true)} dropCard={dropCard} CantOrder={CantOrder} Order={orderBy8}/>
     </div>
   );
 };
