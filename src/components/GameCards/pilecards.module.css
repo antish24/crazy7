@@ -1,0 +1,14 @@
+.cont{
+    width: 35%;
+    height: 90%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.card{
+    width: 90px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+}

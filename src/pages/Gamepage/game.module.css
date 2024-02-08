@@ -1,0 +1,82 @@
+.cont{
+    width: calc(100% - 20px);
+    padding: 10px;
+    height: calc(100% - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8px;
+    gap: 10px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.299);
+}
+.players{
+    width: 100%;
+    height: 35%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.deck{
+    width: 100%;
+    height: 28%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.player{
+    width: 100%;
+    height: 35%;
+}
+.playeraction{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.drawbtn{
+    width: 30px;
+    height: 40px;
+    transform: rotateZ(10deg);
+    margin-left: 5px;
+}
+.timer{
+    width: 100px;
+    height: 40px;
+    background: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.order{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #0000005c;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cardtypepic{
+    width: 30px;
+    height: 30px;
+    background: white;
+    padding: 5px;
+    cursor: pointer;
+}
+.finishbtn{
+    width: 30px;
+    height: 40px;
+}
+.playercards{
+    width: 100%;
+    height:calc(100% - 50px);
+    overflow-y: hidden;
+    overflow-x: scroll;
+    position: relative;
+}
