@@ -133,6 +133,7 @@ const Game = ({socket}) => {
     }
     else if(dropCards.length < 1){
       DropCardFun(cardId)
+      console.log('fuck you')
     }
     else alert('Not corret card') 
     setTurnLoading(false)
