@@ -114,29 +114,7 @@ const Game = ({socket}) => {
   }, [playersData]);
 
   const DropLogic=async(cardId,type,value)=>{
-    setTurnLoading(true)
-    const lastDroped=dropCards.length
-    const lastDropCard=dropCards[lastDroped-1]
-    console.log(lastDroped)
-    console.log(lastDropCard)
-    if(value==='8'){
-      setOrderTypeShow(true)
-      DropCardFun(cardId)
-    }
-    else if(orderType===type){
-      DropCardFun(cardId)
-      setOrderType(type)
-    }
-    else if(lastDropCard.value===value){
-      setOrderType(type)
-      DropCardFun(cardId)
-    }
-    else if(dropCards.length < 1){
-      DropCardFun(cardId)
-      console.log('fuck you')
-    }
-    else alert('Not corret card') 
-    setTurnLoading(false)
+    console.log('fuck')
   }
 
   const ChangeTurnFun=async()=>{
