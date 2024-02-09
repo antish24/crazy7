@@ -124,7 +124,7 @@ const Game = ({socket}) => {
       setOrderTypeShow(true)
       DropCardFun(cardId)
     }
-    else if(orderType===type){
+    else if(orderType?orderType===type:lastDropCard.type===type){
       DropCardFun(cardId)
       setOrderType(type)
     }
