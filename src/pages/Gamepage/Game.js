@@ -117,6 +117,7 @@ const Game = ({socket}) => {
     setTurnLoading(true)
     const lastDroped=dropCards.length
     const lastDropCard=dropCards[lastDroped-1]
+    console.log('cardid',cardId,value,type)
     console.log(lastDroped)
     console.log(lastDropCard)
     if(value==='8'){
