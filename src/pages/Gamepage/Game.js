@@ -130,9 +130,11 @@ const Game = ({socket}) => {
     }
     else if(lastDropCard.value===value){
       setOrderType(type)
+      setOrderType(type)
       DropCardFun(cardId)
     }
     else if(lastDroped===0){
+      setOrderType(type)
       DropCardFun(cardId)
     }
     else alert('Not corret card') 
