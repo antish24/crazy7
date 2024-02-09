@@ -92,15 +92,15 @@ const Game = ({socket}) => {
     }
   }
 
-  useEffect(()=>{
-    const getType=async()=>{
-      const lastDroped=dropCards.length
-    const lastDropCard=dropCards[lastDroped-1]
-    console.log(lastDropCard.type)
-    setOrderType(lastDropCard.type)
-    }
-    getType()
-  },[dropCards])
+  // useEffect(()=>{
+  //   const getType=async()=>{
+  //     const lastDroped=dropCards.length
+  //   const lastDropCard=dropCards[lastDroped-1]
+  //   console.log(lastDropCard.type)
+  //   setOrderType(lastDropCard.type)
+  //   }
+  //   getType()
+  // },[dropCards])
 
   useEffect(() => {
     const checkWinner = () => {
